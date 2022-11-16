@@ -1,30 +1,14 @@
-const fs = require('fs')
 
-const base = 3
-const max = 10
-
-let output = ''
+const {createFile, createFileSync} = require('./helpers/multiplication')
 
 console.clear();
 
-console.log('========================');
-console.log(`       Tabla del ${base}`);
-console.log('========================');
 
-for (let index = 1; index <= max; index++) {
+createFile(7)
+    .then( (fileName) => console.log(fileName) )
+    .catch( (err) => console.log(err) )
 
-    // console.log(`${base} X ${index} = ${base * index}`);
-    output += `${base} X ${index} = ${base * index}\n`
-    
-}
+createFileSync(9)
+    .then( (fileName) => console.log(fileName) )
+    .catch( (err) => console.log(err) )
 
-console.log(output);
-
-fs.writeFile( 'tabla-'+base+'.txt', output, (err) => {
-
-    if (err) throw err;
-
-    console.log('tabla-'+base+'.txt - created!');
-
-
-})
