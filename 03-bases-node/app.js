@@ -1,6 +1,27 @@
 
+const { number } = require('yargs');
 const {createFile, createFileSync} = require('./helpers/multiplication')
-const argv = require('yargs').argv
+const argv = require('yargs')
+            .option('b', {
+                alias: 'base',
+                type: 'number',
+                demandOption: true,
+            })
+            .option('l', {
+                alias: 'listar',
+                type: 'boolean',
+                demandOption: true,
+                default: false,
+            })
+            .check( (argv, option) => {
+                // console.log(argv);
+                // console.log(option);
+                if ( isNaN(argv.b) ) {
+                    throw new Error('base has to be a number')
+                }
+                return true
+            })
+            .argv
 
 console.clear();
 
@@ -33,6 +54,10 @@ console.log('base: yargs- '+argv.base);
 // * there a package for handle console args -> yargs 
 
 // * node --help
+
+createFile(7, argv.l)
+    .then( (fileName) => console.log(fileName) )
+    .catch( (err) => console.log(err) )
 
 // createFile(7)
 //     .then( (fileName) => console.log(fileName) )

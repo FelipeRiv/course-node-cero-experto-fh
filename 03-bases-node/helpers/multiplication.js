@@ -1,6 +1,6 @@
 const fs = require('fs')
 
-const createFile  = (base = 5) => {
+const createFile  = (base = 5, listar) => {
 
     return new Promise( (resolve, reject) => {
 
@@ -9,7 +9,7 @@ const createFile  = (base = 5) => {
             const max = 10
 
             console.log('========================');
-            console.log(`       Tabla del ${base}`);
+            console.log(`       Tabla del ${base } list ${listar}`);
             console.log('========================');
         
             let output = ''
@@ -21,7 +21,7 @@ const createFile  = (base = 5) => {
                 
             }
             
-            console.log(output);
+            listar && console.log(output);
             
             // fs.writeFile( 'tabla-'+base+'.txt', output, (err) => {
             
